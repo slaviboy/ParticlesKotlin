@@ -1,0 +1,3 @@
+include ':app:particles'
+include ':app'
+rootProject.name = "SimpleParticles"
