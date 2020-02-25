@@ -1,5 +1,5 @@
 # SimpleParticlesAndroid
-Simple library for creating particles writen in Kotlin
+Simple library for creating particles written in Kotlin
 
 ![cookie monster](https://github.com/slaviboy/SimpleParticlesAndroid/blob/master/screens/home1.gif)
 
@@ -8,9 +8,9 @@ The library has two available types of particles
 * **Dust**
 * **Line**
 
-[Dust](https://github.com/slaviboy/SimpleParticlesAndroid/wiki#dust-particles) particles, are circles randomly moved and drawn in 2D. This is achived by changin the velocity properties -vx and vy, that are used to set the new positiong of the particle. Customization is available via properties like color, radius, speed and many more.
+[Dust](https://github.com/slaviboy/SimpleParticlesAndroid/wiki#dust-particles) particles, are circles randomly moved and drawn in 2D. This is achieve by changing the velocity properties -vx and vy, that are used to set the new position of the particle. Customization is available via properties like color, radius, speed and many more.
 
-[Line](https://github.com/slaviboy/SimpleParticlesAndroid/wiki#line-particles) particles, are circles randomly moved and drawn in 2D. Combined with lines that are drawn depending on the minimum and maximum distance between every two particles from the set. Particles are moved by changin the velocity using the properties -vx and vy, that sets the new positiong of the particle. The lines are generated responsivly right after the new particle position is available. Customization is available via properties like color, radius, speed and many more.
+[Line](https://github.com/slaviboy/SimpleParticlesAndroid/wiki#line-particles) particles, are circles randomly moved and drawn in 2D. Combined with lines that are drawn depending on the minimum and maximum distance between every two particles from the set. Particles are moved by changing the velocity using the properties -vx and vy, that sets the new position of the particle. The lines are generated responsively right after the new particle position is available. Customization is available via properties like color, radius, speed and many more.
 
 
 ## Add to your project
