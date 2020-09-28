@@ -1,25 +1,22 @@
 package com.slaviboy.simpleparticlesexample
 
-import android.graphics.BlendMode
-import android.graphics.BlendModeColorFilter
 import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
-import android.media.Image
-import android.os.Build
+import android.graphics.RadialGradient
+import android.graphics.Shader
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.slaviboy.simpleparticlesexample.drawing.TextureView
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var lineParticles: ImageButton
-    lateinit var dustParticles: ImageButton
+    lateinit var lineParticles: Button
+    lateinit var dustParticles: Button
     lateinit var textureView: TextureView
+    lateinit var clearBackground: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,21 +26,43 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI()
 
         textureView = findViewById(R.id.canvas)
+        lineParticles = findViewById(R.id.line_particles)
+        dustParticles = findViewById(R.id.dust_particles)
+        clearBackground = findViewById(R.id.clear_background)
 
         // attach click listener to hide or show line particles
-        lineParticles = findViewById(R.id.line_particles)
         lineParticles.setOnClickListener {
-            val temp = it as com.slaviboy.simpleparticlesexample.ImageButton
-            temp.switchButtonEnabled()
-            textureView.lineParticles?.isVisible = temp.isButtonEnabled
+            it.isEnabled = false
+            dustParticles.isEnabled = true
+            textureView.lineParticlesGenerator.isVisible = !it.isEnabled
+            textureView.dustParticlesGenerator.isVisible = it.isEnabled
         }
 
         // attach click listener to hide or show dust particles
-        dustParticles = findViewById(R.id.dust_particles)
         dustParticles.setOnClickListener {
-            val temp = it as com.slaviboy.simpleparticlesexample.ImageButton
-            temp.switchButtonEnabled()
-            textureView.dustParticles?.isVisible = temp.isButtonEnabled
+            it.isEnabled = false
+            lineParticles.isEnabled = true
+            textureView.lineParticlesGenerator.isVisible = it.isEnabled
+            textureView.dustParticlesGenerator.isVisible = !it.isEnabled
+        }
+
+        clearBackground.setOnCheckedChangeListener { buttonView, isChecked ->
+            textureView.drawingThread?.clearCanvas = isChecked
+
+            val radius = if (isChecked) {
+                50.0f
+            } else {
+                10.0f
+            }
+            textureView.drawingThread?.dustParticlesGenerator?.particlesRadialGradient = RadialGradient(
+                0.0f,
+                0.0f,
+                radius,
+                intArrayOf(Color.BLUE, Color.TRANSPARENT),
+                floatArrayOf(0.0f, 0.9f),
+                Shader.TileMode.MIRROR
+            )
+            textureView.drawingThread?.dustParticlesGenerator?.maxRadius = radius.toDouble()
         }
     }
 
