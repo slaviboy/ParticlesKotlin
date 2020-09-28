@@ -7,15 +7,14 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import com.slaviboy.simpleparticlesexample.drawing.TextureView
+import com.slaviboy.simpleparticlesexample.drawing.textureview.TextureView
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var lineParticles: Button
     lateinit var dustParticles: Button
-    lateinit var textureView: TextureView
+    lateinit var textureView: TextureView // lateinit var textureView: SurfaceView
     lateinit var clearBackground: CheckBox
 
     override fun onCreate(savedInstanceState: Bundle?) {

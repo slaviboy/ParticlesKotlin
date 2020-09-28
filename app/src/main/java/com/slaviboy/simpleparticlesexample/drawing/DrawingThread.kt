@@ -18,9 +18,9 @@ package com.slaviboy.simpleparticlesexample.drawing
 
 import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.PorterDuff
 import com.slaviboy.particles.dust.DustParticlesGenerator
 import com.slaviboy.particles.line.LineParticlesGenerator
+import com.slaviboy.simpleparticlesexample.drawing.surfaceview.Holder
 
 /**
  * Simple drawing thread, used for drawing the particles on canvas specified by the
@@ -30,7 +30,7 @@ import com.slaviboy.particles.line.LineParticlesGenerator
  * @param dustParticlesGenerator generator for the dust particles
  */
 class DrawingThread(
-    var surfaceHolder: ISurfaceHolder,
+    var surfaceHolder: Holder,
     var lineParticlesGenerator: LineParticlesGenerator,
     var dustParticlesGenerator: DustParticlesGenerator
 ) : Thread() {
@@ -74,7 +74,7 @@ class DrawingThread(
                 synchronized(surfaceHolder) {
 
                     // clear canvas
-                    canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
+                    canvas.drawColor(Color.WHITE )
 
                     when {
                         lineParticlesGenerator.isVisible -> {

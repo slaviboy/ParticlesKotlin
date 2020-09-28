@@ -14,7 +14,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.slaviboy.simpleparticlesexample.drawing
+package com.slaviboy.simpleparticlesexample.drawing.textureview
 
 import android.content.Context
 import android.graphics.Color
@@ -26,6 +26,7 @@ import android.view.TextureView
 import android.view.TextureView.SurfaceTextureListener
 import com.slaviboy.particles.dust.DustParticlesGenerator
 import com.slaviboy.particles.line.LineParticlesGenerator
+import com.slaviboy.simpleparticlesexample.drawing.DrawingThread
 
 /**
  * Texture view that is used for drawing the particles on canvas. The view is using
@@ -76,8 +77,10 @@ class TextureView : TextureView, SurfaceTextureListener {
             lineParticlesGenerator,
             dustParticlesGenerator
         )
-        drawingThread?.isRunning = true
-        drawingThread?.start()
+        drawingThread?.apply {
+            isRunning = true
+            start()
+        }
     }
 
     /**

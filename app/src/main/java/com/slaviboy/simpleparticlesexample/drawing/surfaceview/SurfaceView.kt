@@ -14,7 +14,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.slaviboy.simpleparticlesexample.drawing
+package com.slaviboy.simpleparticlesexample.drawing.surfaceview
 
 import android.content.Context
 import android.graphics.Color
@@ -25,6 +25,7 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import com.slaviboy.particles.dust.DustParticlesGenerator
 import com.slaviboy.particles.line.LineParticlesGenerator
+import com.slaviboy.simpleparticlesexample.drawing.DrawingThread
 
 /**
  * Simple surface view class that has drawing thread, and draws all
@@ -40,9 +41,9 @@ class SurfaceView : SurfaceView, SurfaceHolder.Callback {
         defStyleAttr
     )
 
-    private var drawingThread: DrawingThread? = null
-    private var lineParticlesGenerator: LineParticlesGenerator
-    private var dustParticlesGenerator: DustParticlesGenerator
+    var drawingThread: DrawingThread? = null
+    var lineParticlesGenerator: LineParticlesGenerator
+    var dustParticlesGenerator: DustParticlesGenerator
 
     init {
         holder.addCallback(this)
@@ -51,13 +52,14 @@ class SurfaceView : SurfaceView, SurfaceHolder.Callback {
         dustParticlesGenerator = DustParticlesGenerator(
             viewWidth = width,
             viewHeight = height,
-            maxRadius = 10.0,
+            minRadius = 0.0,
+            maxRadius = 30.0,
             particlesRadialGradient = RadialGradient(
                 0.0f,
                 0.0f,
-                10.0f,
+                30.0f,
                 intArrayOf(Color.BLUE, Color.TRANSPARENT),
-                floatArrayOf(0.1f, 1.0f),
+                floatArrayOf(0.0f, 0.9f),
                 Shader.TileMode.MIRROR
             )
         )
@@ -67,20 +69,14 @@ class SurfaceView : SurfaceView, SurfaceHolder.Callback {
      * Update the view size in the particle properties.
      */
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, width: Int, height: Int) {
-
-        // set view size for the dust particle generator
-        dustParticlesGenerator.viewWidth = width
-        dustParticlesGenerator.viewHeight = height
-
-        // set view size for the lines particle generator
-        lineParticlesGenerator.viewWidth = width
-        lineParticlesGenerator.viewHeight = height
+        updateGeneratorsSize(width, height)
     }
 
     /**
      * Create the drawing thread, attach particles and start the thread.
      */
     override fun surfaceCreated(holder: SurfaceHolder) {
+        updateGeneratorsSize(width, height)
         drawingThread = DrawingThread(
             SurfaceViewHolder(holder),
             lineParticlesGenerator,
@@ -106,5 +102,21 @@ class SurfaceView : SurfaceView, SurfaceHolder.Callback {
                 e.printStackTrace()
             }
         }
+    }
+
+    /**
+     * Update the sizes for the generators
+     * @param width the new view width for the generator
+     * @param height the new view height for the generator
+     */
+    fun updateGeneratorsSize(width: Int, height: Int) {
+
+        // set view size for the dust particle generator
+        dustParticlesGenerator.viewWidth = width
+        dustParticlesGenerator.viewHeight = height
+
+        // set view size for the lines particle generator
+        lineParticlesGenerator.viewWidth = width
+        lineParticlesGenerator.viewHeight = height
     }
 }

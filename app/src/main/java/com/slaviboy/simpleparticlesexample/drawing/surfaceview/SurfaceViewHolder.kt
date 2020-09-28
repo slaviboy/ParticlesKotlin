@@ -14,21 +14,20 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.slaviboy.simpleparticlesexample.drawing
+package com.slaviboy.simpleparticlesexample.drawing.surfaceview
 
 import android.graphics.Canvas
-import com.slaviboy.simpleparticlesexample.drawing.ISurfaceHolder
-import com.slaviboy.simpleparticlesexample.drawing.TextureView
+import android.view.SurfaceHolder
+import com.slaviboy.simpleparticlesexample.drawing.surfaceview.Holder
 
-class TextureViewHolder(private val textureView: TextureView) :
-    ISurfaceHolder {
+class SurfaceViewHolder(val surfaceHolder: SurfaceHolder) :
+    Holder {
 
-    override fun unlockCanvasAndPost(canvas: Canvas?) {
-        textureView.unlockCanvasAndPost(canvas)
+    override fun unlockCanvasAndPost(canvas: Canvas) {
+        surfaceHolder.unlockCanvasAndPost(canvas)
     }
 
-    override fun lockCanvas(): Canvas? {
-        return textureView.lockCanvas()
+    override fun lockCanvas(): Canvas {
+        return surfaceHolder.lockCanvas()
     }
-
 }

@@ -105,9 +105,6 @@ class DustParticlesGenerator(
         }
 
         val drawCanvas = if (clearCanvas) {
-            // clear the canvas before drawing
-            canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
-
             // use the canvas passed in the method
             canvas
         } else {

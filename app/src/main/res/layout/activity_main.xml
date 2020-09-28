@@ -6,11 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.slaviboy.simpleparticlesexample.drawing.TextureView
+    <com.slaviboy.simpleparticlesexample.drawing.textureview.TextureView
         android:id="@+id/canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!--<com.slaviboy.simpleparticlesexample.drawing.surfaceview.SurfaceView
+        android:id="@+id/canvas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
 
     <Button
         android:id="@+id/line_particles"

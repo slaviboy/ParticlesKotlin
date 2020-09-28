@@ -14,11 +14,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.slaviboy.simpleparticlesexample.drawing
+package com.slaviboy.simpleparticlesexample.drawing.surfaceview
 
 import android.graphics.Canvas
 
-interface ISurfaceHolder {
-    fun unlockCanvasAndPost(canvas: Canvas?)
-    fun lockCanvas(): Canvas?
+interface Holder {
+    fun unlockCanvasAndPost(canvas: Canvas)
+    fun lockCanvas(): Canvas
 }
